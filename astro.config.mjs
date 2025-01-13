@@ -7,5 +7,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://astronaut.github.io',
+	base: 'matt',
 	integrations: [mdx(), sitemap(), tailwind()],
 });
