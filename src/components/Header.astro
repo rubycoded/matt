@@ -3,7 +3,7 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
-<header class="m-0 px-4 py-0 bg-brand-light dark:bg-dark-darker text-dark dark:text-brand-lighter shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+<header class="m-0 px-4 py-0 bg-brand-light dark:bg-dark text-dark dark:text-brand-lighter shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
 	<nav class="max-w-content mx-auto flex items-center justify-between">
 		<h2 class="m-0 text-base">
 			<a href="/" class="no-underline">{SITE_TITLE}</a>
@@ -13,8 +13,8 @@ import { SITE_TITLE } from '../consts';
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<div class="social-links flex md:flex hidden md:block">
-			<a href="https://m.webtoo.ls/@astro" target="_blank" class="flex py-4 px-2 text-black border-b-4 border-transparent no-underline hover:border-b-accent">
+		<div class="social-links flex">
+			<a href="https://m.webtoo.ls/@astro" target="_blank" class="flex py-4 px-2 text-dark dark:text-brand-lighter border-b-4 border-transparent no-underline hover:border-b-accent">
 				<span class="sr-only">Follow Astro on Mastodon</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
 					><path
@@ -23,7 +23,7 @@ import { SITE_TITLE } from '../consts';
 					></path></svg
 				>
 			</a>
-			<a href="https://twitter.com/astrodotbuild" target="_blank" class="flex py-4 px-2 text-black border-b-4 border-transparent no-underline hover:border-b-accent">
+			<a href="https://twitter.com/astrodotbuild" target="_blank" class="flex py-4 px-2 text-dark dark:text-brand-lighter border-b-4 border-transparent no-underline hover:border-b-accent">
 				<span class="sr-only">Follow Astro on Twitter</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
 					><path
@@ -32,7 +32,7 @@ import { SITE_TITLE } from '../consts';
 					></path></svg
 				>
 			</a>
-			<a href="https://github.com/withastro/astro" target="_blank" class="flex py-4 px-2 text-black border-b-4 border-transparent no-underline hover:border-b-accent">
+			<a href="https://github.com/withastro/astro" target="_blank" class="flex py-4 px-2 text-dark dark:text-brand-lighter border-b-4 border-transparent no-underline hover:border-b-accent">
 				<span class="sr-only">Go to Astro's GitHub repo</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
 					><path
