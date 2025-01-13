@@ -9,6 +9,7 @@ html {
 
 @layer base {
 	body {
-		@apply w-full bg-surface dark:bg-surface-dark text-ink dark:text-ink-inverse text-fluid-lg selection:bg-brand-light;
+		@apply w-full bg-brand-lighter dark:bg-dark text-dark dark:text-brand-lighter selection:bg-brand-light;
 		font-family: atkinson, system-ui, sans-serif;
 	}
+}
