@@ -1,16 +1,40 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "preline/variants.css";
 @source "../../node_modules/preline/dist/*.js";
-@plugin "@tailwindcss/typography";
 
-/* Adds pointer cursor to buttons */
+@theme {
+  --font-matt: avenir-next-lt-pro, sans-serif;
+
+  --color-brand: oklch(0.62 0.2371 20.59);
+  --color-canvas: oklch(0.98 0.02 85);
+  --color-ink: oklch(0.15 0.01 85);
+  --color-muted: oklch(0.5 0.01 85);
+}
+
 @layer base {
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-matt;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply scroll-mt-28 font-matt leading-tight;
+  }
 
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
 }
-
 /* Defaults hover styles on all devices */
 @custom-variant hover (&:hover);
