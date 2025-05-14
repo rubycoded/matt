@@ -1,27 +1,11 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main class="max-w-content mx-auto py-16">
-			<div class="prose prose-h1:text-brand-lighter prose-p:text-brand-lighter">
-				<h1>Continuously improving</h1>
-				<p>
-					Doing my best to keep improving, and the content on this site and its
-					design will evolve to reflect that too.
-				</p>
-				<p>I’m currently happily starting a digital garden.</p>
-			</div>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout>
+	<Welcome />
+</Layout>

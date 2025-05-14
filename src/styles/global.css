@@ -1,86 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Base styles - fundamental elements */
-html {
-	@apply scroll-smooth overflow-x-hidden bg-brand;
-}
+@import "preline/variants.css";
+@source "../../node_modules/preline/dist/*.js";
 
+/* Adds pointer cursor to buttons */
 @layer base {
-	body {
-		@apply w-full bg-brand-lighter dark:bg-dark text-dark dark:text-brand-lighter selection:bg-brand-light;
-		font-family: atkinson, system-ui, sans-serif;
-	}
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
-/* Header styles */
-@layer components {
-	header {
-		@apply m-0 px-4 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.05)];
-	}
-
-	header h2 {
-		@apply m-0 text-base;
-	}
-
-	header h2 a,
-	header h2 a.active {
-		@apply no-underline;
-	}
-
-	header nav {
-		@apply flex items-center justify-between;
-	}
-
-	header nav a {
-		@apply py-4 px-2 border-b-4 border-transparent no-underline;
-	}
-
-	header nav a.active {
-		@apply no-underline border-brand;
-	}
-
-	.social-links,
-	.social-links a {
-		@apply flex;
-	}
-
-	@media (max-width: 720px) {
-		.social-links {
-			@apply hidden;
-		}
-	}
-}
-
-main {
-	@apply w-[calc(100%-2em)] max-w-full m-0;
-}
-
-.hero-image {
-	@apply w-full;
-}
-
-.hero-image img {
-	@apply block mx-auto rounded-xl shadow-[var(--box-shadow)];
-}
-
-.prose {
-	@apply max-w-content mx-auto p-4;
-}
-
-.title {
-	@apply mb-4 py-4 text-center leading-none;
-}
-
-.title h1 {
-	@apply mb-2 mt-0;
-}
-
-.date {
-	@apply mb-2;
-}
-
-.last-updated-on {
-	@apply italic;
-}
+/* Defaults hover styles on all devices */
+@custom-variant hover (&:hover);
