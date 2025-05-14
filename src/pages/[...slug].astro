@@ -40,6 +40,7 @@ const title = entry.data.title || entry.id.replace(/^\d{4}-\d{2}-\d{2}-/, '').re
   title={title}
   publishDate={publishDate}
   updatedDate={entry.data.modified}
+  content={entry.body}
 >
   <Content />
 </Post> 
