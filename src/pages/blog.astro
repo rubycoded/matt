@@ -1,0 +1,86 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+// Get all blog posts
+const posts = await getCollection("blog");
+
+// Function to format date
+function formatDate(post: CollectionEntry<"blog">): string {
+  if (post.data.date) {
+    return new Date(post.data.date).toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
+  const match = post.id.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (match) {
+    return new Date(match[1]).toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
+  return "";
+}
+
+// Function to get post URL
+function getPostUrl(post: CollectionEntry<"blog">): string {
+  // Remove date prefix and .md extension from filename
+  return "/" + post.id.replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/\.md$/, "");
+}
+---
+
+<Layout>
+  <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+    <h1
+      class="block text-3xl font-bold text-ink sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white mb-8"
+    >
+      Blog
+    </h1>
+
+    <div class="space-y-10">
+      {
+        posts.map((post) => (
+          <article class="border-b border-neutral-200 dark:border-neutral-800 pb-8">
+            <h2 class="text-2xl font-bold">
+              <a
+                href={getPostUrl(post)}
+                class="hover:text-muted transition-colors"
+              >
+                {post.data.title ||
+                  post.id
+                    .replace(/^\d{4}-\d{2}-\d{2}-/, "")
+                    .replace(/\.md$/, "")
+                    .replace(/-/g, " ")}
+              </a>
+            </h2>
+            <div class="mt-2">
+              {post.data.excerpt && (
+                <p class="mt-2 text-lg">{post.data.excerpt}</p>
+              )}
+            </div>
+            <div class="text-muted mt-2">
+              {formatDate(post)}
+              {post.data.modified && (
+                <span>
+                  {" "}
+                  (Updated:{" "}
+                  {new Date(post.data.modified).toLocaleDateString("en-GB", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                  )
+                </span>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
