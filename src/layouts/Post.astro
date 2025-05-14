@@ -1,26 +1,29 @@
 ---
 import Layout from "./Layout.astro";
+import { getReadingTime } from "../utils/readingTime";
 
 interface Props {
   title: string;
   publishDate: Date;
   updatedDate?: Date;
+  content?: string;
 }
 
-const { title, publishDate, updatedDate } = Astro.props;
+const { title, publishDate, updatedDate, content = "" } = Astro.props;
+const readingTime = getReadingTime(content);
 
 // Format dates
-const formattedPublishDate = new Date(publishDate).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
+const formattedPublishDate = new Date(publishDate).toLocaleDateString("en-GB", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 
-const formattedUpdatedDate = updatedDate 
-  ? new Date(updatedDate).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+const formattedUpdatedDate = updatedDate
+  ? new Date(updatedDate).toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     })
   : null;
 ---
@@ -29,19 +32,39 @@ const formattedUpdatedDate = updatedDate
   <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
     <article>
       <header class="mb-8">
-        <h1 class="block text-3xl font-bold text-ink sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
+        <h1
+          class="block text-4xl font-bold text-ink md:text-5xl md:leading-tight dark:text-white"
+        >
           {title}
         </h1>
-        <div class="mt-4">
-          <time datetime={publishDate.toISOString()}>
+        <div class="mt-4 text-muted flex flex-wrap items-center gap-2">
+          <time
+            datetime={publishDate.toISOString()}
+            class="inline-flex items-center"
+          >
             {formattedPublishDate}
           </time>
-          {updatedDate && formattedUpdatedDate && (
-            <span> (Updated: <time datetime={updatedDate.toISOString()}>{formattedUpdatedDate}</time>)</span>
-          )}
+
+          {
+            updatedDate && formattedUpdatedDate && (
+              <span class="inline-flex items-center">
+                &middot; Updated:{" "}
+                <time datetime={updatedDate.toISOString()} class="ml-1">
+                  {formattedUpdatedDate}
+                </time>
+              </span>
+            )
+          }
+          <span class="inline-flex">&middot;</span>
+          <span class="inline-flex items-center">
+            {readingTime}<span class="md:hidden">&nbsp;mins read</span
+            ><span class="hidden md:inline">&nbsp;minutes read</span>
+          </span>
         </div>
       </header>
-      <div class="prose max-w-none prose-headings:text-4xl prose-headings:mt-12 prose-headings:mb-4 prose-p:text-lg prose-p:text-ink prose-p:mt-4 prose-a:underline hover:prose-a:text-muted dark:prose-invert">
+      <div
+        class="prose max-w-none prose-headings:text-4xl prose-headings:mt-12 prose-headings:mb-4 prose-p:text-lg prose-p:text-ink prose-p:mt-4 prose-a:underline hover:prose-a:text-muted dark:prose-invert"
+      >
         <slot />
       </div>
     </article>
