@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import Header from "../layouts/Header.astro";
+import Footer from "../layouts/Footer.astro";
 ---
 
 <!doctype html>
@@ -9,10 +11,13 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="stylesheet" href="https://use.typekit.net/yau4wtk.css" />
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<Header />
 		<slot />
+		<Footer />
 	</body>
 	<!-- Preline UI -->
 	<script is:inline src="./assets/vendor/preline/dist/index.js"></script>
