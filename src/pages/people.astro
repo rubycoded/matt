@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import * as PeopleContent from "../content/people.md";
+---
+
+<Layout>
+  <!-- Hero -->
+  <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+    <div>
+      <h1
+        class="block text-3xl font-bold text-ink sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white"
+      >
+        People
+      </h1>
+      <div
+        class="prose max-w-none prose-headings:text-4xl prose-headings:mt-12 prose-headings:mb-4 prose-p: text-lg prose-p:mt-4 prose-a:underline hover:prose-a:text-muted dark:prose-invert"
+      >
+        <PeopleContent.Content />
+      </div>
+    </div>
+  </div>
+  <!-- End Hero -->
+</Layout>
