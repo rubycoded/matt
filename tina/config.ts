@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.CF_PAGES_BRANCH || "main"
+const branch = process.env.CF_PAGES_BRANCH || "master"
 
 export default defineConfig({
   branch,
