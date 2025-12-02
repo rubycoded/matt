@@ -2,6 +2,18 @@
 <header
   class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-canvas dark:bg-[oklch(0.15_0.02_85)]"
 >
+  <script>
+    // Prevent flash of wrong theme on page load
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldBeDark = storedTheme ? storedTheme === 'dark' : prefersDark;
+
+    if (shouldBeDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
   <nav
     class="relative max-w-[64rem] w-full mx-auto md:flex md:items-center md:justify-between md:gap-3 py-2 px-4 sm:px-6 lg:px-8"
   >
