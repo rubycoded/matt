@@ -21,6 +21,8 @@
 
   body {
     @apply font-matt bg-canvas text-ink;
+    background-color: oklch(0.98 0.02 85) !important;
+    color: oklch(0.15 0.01 85) !important;
   }
 
   h1,
