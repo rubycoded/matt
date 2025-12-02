@@ -16,10 +16,11 @@
 
   html {
     @apply scroll-smooth;
+    color-scheme: light;
   }
 
   body {
-    @apply font-matt bg-canvas;
+    @apply font-matt bg-canvas text-ink;
   }
 
   h1,
