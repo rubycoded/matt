@@ -33,11 +33,11 @@ const formattedUpdatedDate = updatedDate
     <article>
       <header class="mb-8">
         <h1
-          class="block text-4xl font-bold text-ink md:text-5xl md:leading-tight"
+          class="block text-4xl font-bold text-ink md:text-5xl md:leading-tight dark:text-[oklch(0.95_0.01_85)]"
         >
           {title}
         </h1>
-        <div class="mt-4 text-muted flex flex-wrap items-center gap-2">
+        <div class="mt-4 text-muted dark:text-[oklch(0.45_0.01_85)] flex flex-wrap items-center gap-2">
           <time
             datetime={publishDate.toISOString()}
             class="inline-flex items-center"
@@ -63,7 +63,7 @@ const formattedUpdatedDate = updatedDate
         </div>
       </header>
       <div
-        class="prose max-w-none prose-headings:text-4xl prose-headings:mt-12 prose-headings:mb-4 prose-p:text-lg prose-p:text-ink prose-p:mt-4 prose-a:underline hover:prose-a:text-muted"
+        class="prose max-w-none prose-headings:text-4xl prose-headings:mt-12 prose-headings:mb-4 prose-p:text-lg prose-p:text-ink prose-p:mt-4 prose-a:underline hover:prose-a:text-muted dark:prose-invert dark:text-[oklch(0.95_0.01_85)] dark:[&_*]:text-[oklch(0.95_0.01_85)] dark:[&_a]:text-[oklch(0.62_0.2371_20.59)]"
       >
         <slot />
       </div>
