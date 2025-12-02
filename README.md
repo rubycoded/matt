@@ -1,48 +1,143 @@
-# Astro Starter Kit: Basics
+# Matt's Blog - mattchung.com
 
-```sh
-pnpm create astro@latest -- --template basics
+A personal blog built with Astro, TailwindCSS, and TinaCMS.
+
+## Overview
+
+This is a static site blog powered by Astro with content management through TinaCMS. The site is deployed to GitHub Pages and includes a digital garden section for long-form essays and ideas.
+
+## Tech Stack
+
+- **Astro 5.9.0** - Static site generator
+- **TailwindCSS 4.1.6** - Utility-first CSS framework
+- **TinaCMS 2.7.8** - Headless CMS for content management
+- **pnpm** - Package manager
+
+## Project Structure
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
-│   └── favicon.svg
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   ├── content/          # Content files (Markdown)
+│   │   ├── blog/         # Blog posts
+│   │   ├── now.md        # Now page
+│   │   └── people.md     # People page
+│   ├── layouts/          # Layout components
+│   ├── pages/            # Page components
+│   │   ├── index.astro   # Home page
+│   │   ├── blog.astro    # Blog listing
+│   │   ├── garden.astro  # Digital garden
+│   │   └── [...]
+│   └── components/       # Reusable components
+├── public/               # Static assets
+├── tina/                 # TinaCMS configuration
+├── .github/workflows/    # CI/CD workflows
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Quick Start
 
-## 🧞 Commands
+### Development
 
-All commands are run from the root of the project, from a terminal:
+```bash
+# Install dependencies
+pnpm install
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+# Start dev server with TinaCMS
+pnpm dev
 
-## 👀 Want to learn more?
+# Server runs at http://localhost:4321
+# TinaCMS admin at http://localhost:4321/admin
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Build & Deploy
+
+```bash
+# Build for production
+pnpm build
+
+# Preview build locally
+pnpm preview
+```
+
+## Commands Reference
+
+| Command | Action |
+|---------|--------|
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Start local dev server with TinaCMS at `localhost:4321` |
+| `pnpm build` | Build production site to `./dist/` |
+| `pnpm preview` | Preview production build locally |
+| `pnpm astro ...` | Run Astro CLI commands |
+
+## Deployment & CI/CD
+
+### GitHub Pages Deployment
+
+This project uses GitHub Actions for deployment to GitHub Pages.
+
+**Workflow File:** `.github/workflows/deploy.yml`
+
+**Trigger Configuration:**
+- **Type:** Manual only (`workflow_dispatch`)
+- **Branch:** `master` (default branch)
+- **No automatic deployments on push** - Full control over when the site goes live
+
+### Manual Deployment
+
+Deploy the site from the command line:
+
+```bash
+# Trigger workflow from command line
+gh workflow run deploy.yml --ref master
+
+# Check workflow status
+gh run list --limit 5
+
+# View detailed workflow output
+gh run view <RUN_ID>
+```
+
+Or from GitHub UI:
+1. Go to **Actions** tab in the repository
+2. Select **Deploy to GitHub Pages** workflow
+3. Click **Run workflow** → **Run workflow** button
+
+**Deployment Process:**
+1. Checks out the repository
+2. Installs dependencies (auto-detects pnpm)
+3. Builds the Astro site
+4. Deploys to GitHub Pages
+
+**Live Site:** https://themattchung.com
+
+## Content Management
+
+### Using TinaCMS
+
+TinaCMS is integrated for easy content editing:
+
+1. Start dev server: `pnpm dev`
+2. Visit CMS admin: `http://localhost:4321/admin`
+3. Edit content through the UI
+4. Changes save to Markdown files in `src/content/`
+
+### Manual Editing
+
+All content is stored in Markdown files in `src/content/`:
+- Blog posts: `src/content/blog/` (e.g., `2025-01-31-joining-dataswyft.md`)
+- Pages: `src/content/now.md`, `src/content/people.md`
+
+## Important Notes
+
+- The repository uses `master` as the default branch (not `main`)
+- GitHub Actions workflow is configured for **manual deployments only**
+- All dependencies are pinned in `pnpm-lock.yaml`
+- TinaCMS generates additional files (kept in `.gitignore`)
+
+## Resources
+
+- [Astro Documentation](https://docs.astro.build)
+- [TailwindCSS Documentation](https://tailwindcss.com)
+- [TinaCMS Documentation](https://tina.io/docs)
+- [GitHub Pages Documentation](https://docs.github.com/en/pages)
