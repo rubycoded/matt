@@ -24,6 +24,15 @@ import Footer from "../components/Footer.astro";
 		<!-- Preline UI -->
 		<script>
 			import "preline/dist/preline.js";
+
+			// Ensure Preline initializes after page load
+			if (typeof window !== 'undefined') {
+				window.addEventListener('load', () => {
+					if (window.HSStaticMethods) {
+						window.HSStaticMethods.autoInit();
+					}
+				});
+			}
 		</script>
 	</body>
 </html>
