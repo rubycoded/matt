@@ -5,3 +5,5 @@ modified: 2025-12-17T16:00:00.000Z
 ---
 
 This is a test post. 2
+
+![](/images/IMG_5329.jpeg)
