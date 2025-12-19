@@ -7,7 +7,9 @@ type BlogPost = CollectionEntry<"blog">;
 
 // Get the slug parameter from the URL
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
+  const blogEntries = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
   
   return blogEntries.map((entry) => {
     // Use the filename without date prefix as the slug

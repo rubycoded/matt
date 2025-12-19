@@ -2,8 +2,10 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
-// Get all blog posts
-const posts = await getCollection("blog");
+// Get all blog posts, filtering out drafts
+const posts = await getCollection("blog", ({ data }) => {
+  return data.draft !== true;
+});
 
 // Function to format date
 function formatDate(post: CollectionEntry<"blog">): string {

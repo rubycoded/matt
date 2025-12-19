@@ -29,6 +29,24 @@ export default defineConfig({
         label: "Posts",
         path: "src/content/blog",
         format: "md",
+        defaultItem: () => ({
+          date: new Date().toISOString(),
+        }),
+        ui: {
+          filename: {
+            slugify: (values) => {
+              const date = values?.date ? new Date(values.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
+              const slug = values?.slug || values?.title?.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+              return `${date}-${slug}`;
+            },
+          },
+        },
+        indexes: [
+          {
+            name: "date",
+            fields: [{ name: "date" }],
+          },
+        ],
         fields: [
           {
             type: "string",
@@ -47,6 +65,53 @@ export default defineConfig({
             type: "datetime",
             name: "modified",
             label: "Modified",
+            required: false,
+          },
+          {
+            type: "string",
+            name: "slug",
+            label: "Slug",
+            description: "Custom URL slug for this post (optional, defaults to filename)",
+            required: false,
+          },
+          {
+            type: "string",
+            name: "categories",
+            label: "Categories",
+            description: "Post categories for organization and filtering",
+            list: true,
+            required: false,
+          },
+          {
+            type: "string",
+            name: "tags",
+            label: "Tags",
+            description: "Tags for this post",
+            list: true,
+            required: false,
+          },
+          {
+            type: "string",
+            name: "excerpt",
+            label: "Excerpt",
+            description: "Short summary of the post",
+            ui: {
+              component: "textarea",
+            },
+            required: false,
+          },
+          {
+            type: "boolean",
+            name: "draft",
+            label: "Draft",
+            description: "Mark as draft to prevent publishing",
+            required: false,
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Featured Image",
+            description: "Featured image for this post",
             required: false,
           },
           {
