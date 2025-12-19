@@ -6,7 +6,7 @@ categories:
   - test
 tags:
   - test
-draft: false
+draft: true
 ---
 
 This is a test post. 3
