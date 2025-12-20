@@ -12,7 +12,12 @@ const blogCollection = defineCollection({
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional().default(false),
     excerpt: z.string().optional(),
+    // Legacy image field (for backward compatibility)
     image: z.string().optional(),
+    // Featured image fields
+    featuredImage: z.string().optional(),
+    featuredImageAlt: z.string().optional(),
+    featuredImageCaption: z.string().optional(),
   }),
 });
 

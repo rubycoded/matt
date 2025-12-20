@@ -109,9 +109,23 @@ export default defineConfig({
           },
           {
             type: "image",
-            name: "image",
+            name: "featuredImage",
             label: "Featured Image",
             description: "Featured image for this post",
+            required: false,
+          },
+          {
+            type: "string",
+            name: "featuredImageAlt",
+            label: "Featured Image Alt Text",
+            description: "Describe the image for accessibility and SEO",
+            required: false,
+          },
+          {
+            type: "string",
+            name: "featuredImageCaption",
+            label: "Featured Image Caption",
+            description: "Optional caption displayed below the image",
             required: false,
           },
           {
