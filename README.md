@@ -11,6 +11,7 @@ This is a static site blog powered by Astro with content management through Tina
 - **Astro 5.9.0** - Static site generator
 - **TailwindCSS 4.1.6** - Utility-first CSS framework
 - **TinaCMS 2.7.8** - Headless CMS for content management
+- **Playwright** - End-to-end testing framework
 - **pnpm** - Package manager
 
 ## Project Structure
@@ -68,6 +69,7 @@ pnpm preview
 | `pnpm dev` | Start local dev server with TinaCMS at `localhost:4321` |
 | `pnpm build` | Build production site to `./dist/` |
 | `pnpm preview` | Preview production build locally |
+| `npm test` | Run Playwright tests for social sharing validation |
 | `pnpm astro ...` | Run Astro CLI commands |
 
 ## Deployment & CI/CD
@@ -135,9 +137,40 @@ All content is stored in Markdown files in `src/content/`:
 - All dependencies are pinned in `pnpm-lock.yaml`
 - TinaCMS generates additional files (kept in `.gitignore`)
 
+## Social Sharing
+
+This blog implements comprehensive social sharing meta tags for rich previews on all platforms:
+
+### Supported Platforms
+- **Facebook/LinkedIn** - Open Graph protocol
+- **Twitter/X** - Twitter Cards
+- **Slack/Discord** - OG tags
+- **LinkedIn** - Article structured data
+
+### Features
+- Rich previews with images, titles, and descriptions
+- Featured image integration with TinaCMS
+- Fallback images for posts without featured images
+- Twitter handle integration (@themattchung)
+- Article-specific meta tags (publish dates, author, sections)
+- Absolute URL generation for cross-platform compatibility
+
+### Content Authors
+1. Upload featured images in TinaCMS admin
+2. Add descriptive alt text for accessibility
+3. Meta tags are automatically generated
+4. Social media platforms will show rich previews
+
+### Validation Tools
+- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
+- [Twitter Card Validator](https://cards-dev.twitter.com/validator)
+- [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
+
 ## Resources
 
 - [Astro Documentation](https://docs.astro.build)
 - [TailwindCSS Documentation](https://tailwindcss.com)
 - [TinaCMS Documentation](https://tina.io/docs)
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
+- [Open Graph Protocol](https://ogp.me/)
+- [Twitter Cards Documentation](https://developer.twitter.com/en/docs/twitter-for-websites/cards)

@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Social sharing meta tags implementation (2024-12-21)
+  - Added Open Graph (OG) protocol support for rich Facebook/LinkedIn previews
+  - Added Twitter Card support for rich Twitter/X previews
+  - Created SEO.astro component with complete meta tag generation
+  - Added centralized SEO configuration in seo.config.ts
+  - Generated default OG images (og-default.jpg, og-home.jpg, og-blog.jpg)
+  - Comprehensive Playwright testing suite for social sharing validation
+  - Support for article-specific meta tags (published_time, author, section)
+  - Absolute URL generation for images and canonical links
+  - Fallback logic for missing featured images
 - TinaCMS featured image support with alt text and caption fields (2024-12-20)
   - Added `featuredImage` field (image path) to blog post schema
   - Added `featuredImageAlt` field for accessibility and SEO

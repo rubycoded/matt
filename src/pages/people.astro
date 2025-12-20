@@ -1,9 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import * as PeopleContent from "../content/people.md";
+import { seoConfig } from "../config/seo.config";
 ---
 
-<Layout>
+<Layout
+  title="People - Matt Chung"
+  description="People who inspire me and have influenced my journey."
+  image={seoConfig.fallbackImages.default}
+  url="/people"
+  type="website"
+>
   <!-- Hero -->
   <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
     <div>

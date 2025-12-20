@@ -1,8 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { seoConfig } from "../config/seo.config";
 ---
 
-<Layout>
+<Layout
+  title="Matt Chung - Personal Blog"
+  description="Personal blog about technology, community, and life. Writing about WordPress, web development, and entrepreneurship."
+  image={seoConfig.fallbackImages.home}
+  url="/"
+  type="website"
+>
 	<!-- Hero -->
 	<div class="max-w-[645rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
 		<div>

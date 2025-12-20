@@ -1,0 +1,96 @@
+---
+import { seoConfig, getAbsoluteUrl, getAbsoluteImageUrl, truncateDescription } from '../config/seo.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  url?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
+}
+
+const {
+  title = seoConfig.defaultTitle,
+  description = seoConfig.defaultDescription,
+  image,
+  imageAlt,
+  url,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  tags = [],
+} = Astro.props;
+
+// Get absolute URL for current page
+const canonicalURL = url 
+  ? getAbsoluteUrl(url, seoConfig.siteUrl)
+  : new URL(Astro.url.pathname, seoConfig.siteUrl).href;
+
+// Get absolute image URL with fallback
+const ogImage = getAbsoluteImageUrl(image);
+const ogImageAlt = imageAlt || title || seoConfig.defaultTitle;
+
+// Truncate description to 160 characters
+const truncatedDescription = truncateDescription(description || seoConfig.defaultDescription);
+
+// Development-only image validation
+if (import.meta.env.DEV && image) {
+  console.log(`🖼️  SEO: Using featured image: ${ogImage}`);
+  console.log(`📏 SEO: OG image dimensions should be 1200x630px for best results`);
+}
+---
+
+<!-- Primary Meta Tags -->
+<meta name="title" content={title} />
+<meta name="description" content={truncatedDescription} />
+<meta name="author" content={seoConfig.author} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={truncatedDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={ogImageAlt} />
+<meta property="og:image:width" content={seoConfig.ogImage.width.toString()} />
+<meta property="og:image:height" content={seoConfig.ogImage.height.toString()} />
+<meta property="og:site_name" content={seoConfig.siteName} />
+<meta property="og:locale" content={seoConfig.locale} />
+
+{type === 'article' && (
+  <>
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    <meta property="article:author" content={seoConfig.author} />
+    <meta property="article:section" content={seoConfig.article.section} />
+    {tags.map((tag) => <meta property="article:tag" content={tag} />)}
+  </>
+)}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={truncatedDescription} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
+{seoConfig.twitterHandle && (
+  <>
+    <meta name="twitter:site" content={seoConfig.twitterHandle} />
+    <meta name="twitter:creator" content={seoConfig.twitterHandle} />
+  </>
+)}
+
+{seoConfig.facebookAppId && (
+  <meta property="fb:app_id" content={seoConfig.facebookAppId} />
+)}
+
+<!-- Additional SEO Meta Tags -->
+<meta name="keywords" content={tags.join(', ')} />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="content-language" content={seoConfig.locale} />

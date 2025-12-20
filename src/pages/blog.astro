@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import { seoConfig } from "../config/seo.config";
 
 // Get all blog posts, filtering out drafts
 const posts = await getCollection("blog", ({ data }) => {
@@ -36,7 +37,13 @@ function getPostUrl(post: CollectionEntry<"blog">): string {
 }
 ---
 
-<Layout>
+<Layout
+  title="Blog - Matt Chung"
+  description="Read my latest thoughts on technology, community, and life."
+  image={seoConfig.fallbackImages.blog}
+  url="/blog"
+  type="website"
+>
   <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
     <h1
       class="block text-3xl font-bold text-ink dark:text-[oklch(0.95_0.01_85)] sm:text-4xl lg:text-6xl lg:leading-tight mb-8"

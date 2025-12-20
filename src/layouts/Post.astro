@@ -7,9 +7,22 @@ interface Props {
   publishDate: Date;
   updatedDate?: Date;
   content?: string;
+  excerpt?: string;
+  featuredImage?: string;
+  featuredImageAlt?: string;
+  tags?: string[];
 }
 
-const { title, publishDate, updatedDate, content = "" } = Astro.props;
+const { 
+  title, 
+  publishDate, 
+  updatedDate, 
+  content = "", 
+  excerpt,
+  featuredImage,
+  featuredImageAlt,
+  tags = []
+} = Astro.props;
 const readingTime = getReadingTime(content);
 
 // Format dates
@@ -26,9 +39,22 @@ const formattedUpdatedDate = updatedDate
       day: "numeric",
     })
   : null;
+
+// Format dates for OG tags
+const publishedTime = publishDate.toISOString();
+const modifiedTime = updatedDate?.toISOString();
 ---
 
-<Layout>
+<Layout
+  title={title}
+  description={excerpt}
+  image={featuredImage}
+  imageAlt={featuredImageAlt}
+  type="article"
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  tags={tags}
+>
   <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
     <article>
       <header class="mb-8">
