@@ -6,9 +6,10 @@ categories:
   - test
 tags:
   - test
-draft: true
+draft: false
+featuredImage: /images/IMG_5329.jpeg
 ---
 
-This is a test post. 3 - 4
+This is a test post. 3 - 43
 
 ![](/images/IMG_5329.jpeg)
