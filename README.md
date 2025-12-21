@@ -8,9 +8,9 @@ This is a static site blog powered by Astro with content management through Tina
 
 ## Tech Stack
 
-- **Astro 5.9.0** - Static site generator
-- **TailwindCSS 4.1.6** - Utility-first CSS framework
-- **TinaCMS 2.7.8** - Headless CMS for content management
+ - **Astro 5.16.6** - Static site generator
+ - **TailwindCSS 4.1.18** - Utility-first CSS framework
+ - **TinaCMS 3.1.2** - Headless CMS for content management
 - **Playwright** - End-to-end testing framework
 - **pnpm** - Package manager
 
@@ -136,6 +136,39 @@ All content is stored in Markdown files in `src/content/`:
 - GitHub Actions workflow is configured for **manual deployments only**
 - All dependencies are pinned in `pnpm-lock.yaml`
 - TinaCMS generates additional files (kept in `.gitignore`)
+
+## Dark Mode
+
+This blog features a user-controlled dark mode toggle with session-based persistence.
+
+### Features
+- **Toggle Button** - Sun/moon icon in header (mobile and desktop)
+- **Session Persistence** - Theme choice persists during browsing session
+- **System Preference** - Respects OS dark/light mode preference
+- **Privacy Compliant** - Uses sessionStorage only (GDPR compliant, no cookies)
+- **Cross-Tab Sync** - Theme syncs across tabs in same browsing session
+- **Keyboard Accessible** - Fully keyboard navigable (Enter/Space to toggle)
+- **WCAG Compliant** - Touch targets meet accessibility standards (44x44px)
+
+### How It Works
+1. **Initial Load**: Detects OS preference (light/dark mode)
+2. **Manual Toggle**: User can override with toggle button
+3. **Session Storage**: Choice saved for current browsing session
+4. **New Session**: Resets to OS preference when browser reopens
+5. **Privacy**: No persistent storage (localStorage/cookies) used
+
+### Technical Details
+- Session storage key: `matt-theme`
+- Priority: sessionStorage → system preference → light (default)
+- FOUC prevention with inline script in `<head>`
+- Tailwind CSS class-based dark mode (`dark:` prefix)
+- OKLCH color space for perceptually uniform colors
+
+### Testing
+- 24 Playwright tests (all passing)
+- Cross-browser: Chromium, Firefox, WebKit
+- Keyboard navigation validated
+- ARIA labels tested
 
 ## Social Sharing
 

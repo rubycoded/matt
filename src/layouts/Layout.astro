@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SEO from "../components/SEO.astro";
+import ThemeScript from "../components/ThemeScript.astro";
 
 interface Props {
   title?: string;
@@ -26,6 +27,9 @@ const { title, description, image, imageAlt, url, type = 'website' } = Astro.pro
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href="https://use.typekit.net/yau4wtk.css" />
 		
+		<!-- Theme Script - MUST be first to prevent FOUC -->
+		<ThemeScript />
+		
 		<!-- SEO Meta Tags -->
 		<SEO
 			title={title}
@@ -44,6 +48,7 @@ const { title, description, image, imageAlt, url, type = 'website' } = Astro.pro
 		<Header />
 		<slot />
 		<Footer />
+
 		<!-- Preline UI -->
 		<script>
 			import "preline/dist/preline.js";
@@ -54,8 +59,104 @@ const { title, description, image, imageAlt, url, type = 'website' } = Astro.pro
 					if (window.HSStaticMethods) {
 						window.HSStaticMethods.autoInit();
 					}
+
+					// Dispatch custom event after Preline is ready
+					window.dispatchEvent(new Event('preline-ready'));
 				});
 			}
+		</script>
+
+		<!-- Theme Toggle Initialization -->
+		<script is:inline>
+			(function() {
+				const STORAGE_KEY = 'matt-theme';
+				let initialized = false;
+
+				function getCurrentTheme() {
+					return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+				}
+
+				function setTheme(theme) {
+					// Apply theme class to <html> element
+					if (theme === 'dark') {
+						document.documentElement.classList.add('dark');
+					} else {
+						document.documentElement.classList.remove('dark');
+					}
+
+					// Save to sessionStorage (session-only, GDPR compliant)
+					sessionStorage.setItem(STORAGE_KEY, theme);
+
+					// Update aria-label for ALL toggle buttons
+					document.querySelectorAll('[data-testid="theme-toggle"]').forEach(function(toggle) {
+						toggle.setAttribute(
+							'aria-label',
+							theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+						);
+					});
+				}
+
+				function toggleTheme() {
+					const current = getCurrentTheme();
+					const next = current === 'dark' ? 'light' : 'dark';
+					setTheme(next);
+				}
+
+				// Initialize ALL theme toggle buttons
+				function initializeToggleButtons() {
+					if (initialized) {
+						return;
+					}
+
+					const toggles = document.querySelectorAll('[data-testid="theme-toggle"]');
+
+					toggles.forEach(function(toggle) {
+						// Click handler
+						toggle.addEventListener('click', toggleTheme);
+
+						// Keyboard handler (Enter and Space)
+						toggle.addEventListener('keydown', function(e) {
+							if (e.key === 'Enter' || e.key === ' ') {
+								e.preventDefault();
+								toggleTheme();
+							}
+						});
+
+						// Set initial aria-label
+						toggle.setAttribute(
+							'aria-label',
+							getCurrentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+						);
+					});
+
+					initialized = true;
+				}
+
+				// Run initialization when DOM is fully loaded
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', initializeToggleButtons);
+				} else {
+					initializeToggleButtons();
+				}
+
+				// Also try after Preline is ready (in case DOM wasn't ready first time)
+				window.addEventListener('preline-ready', initializeToggleButtons);
+
+				// Listen for system preference changes
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+					// Only apply if user hasn't set a manual preference this session
+					if (!sessionStorage.getItem(STORAGE_KEY)) {
+						setTheme(e.matches ? 'dark' : 'light');
+					}
+				});
+
+				// Cross-tab synchronization (same origin only)
+				window.addEventListener('storage', function(e) {
+					if (e.key === STORAGE_KEY && e.newValue) {
+						setTheme(e.newValue);
+					}
+				});
+			})();
 		</script>
 	</body>
 </html>

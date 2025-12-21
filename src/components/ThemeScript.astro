@@ -1,0 +1,36 @@
+---
+// ThemeScript.astro - Inline script to prevent flash of wrong theme
+// This MUST be placed in <head> before any stylesheets
+// Session-based theme management (GDPR compliant)
+---
+
+<script is:inline>
+  (function() {
+    const STORAGE_KEY = 'matt-theme';
+    
+    function getThemePreference() {
+      // 1. Check sessionStorage first (user's manual choice this session)
+      const stored = sessionStorage.getItem(STORAGE_KEY);
+      if (stored === 'dark' || stored === 'light') {
+        return stored;
+      }
+      
+      // 2. Fall back to system preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      
+      // 3. Default to light
+      return 'light';
+    }
+    
+    const theme = getThemePreference();
+    
+    // Apply theme class to <html> element using Tailwind's class-based dark mode
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+</script>

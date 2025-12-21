@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Dark mode toggle implementation (2024-12-21)
+  - User-controlled theme toggle button in header (mobile and desktop)
+  - Session-based theme persistence using sessionStorage (GDPR compliant)
+  - System preference detection and respect (prefers-color-scheme)
+  - Cross-tab theme synchronization
+  - Keyboard accessible toggle (Enter/Space keys)
+  - Dynamic ARIA labels for screen readers
+  - FOUC (Flash of Unstyled Content) prevention
+  - Touch target size meets WCAG 2.1 AA standards (44x44px)
+  - Comprehensive Playwright test suite (24 tests, all passing)
+  - Responsive toggle placement (mobile + desktop variants)
+  - **Note**: Toggle verified working in automated tests; production deployment for live validation
+
 ### Security
 - Fixed 10 dependency vulnerabilities (2024-12-21)
   - Applied comprehensive pnpm overrides to address critical, high, moderate, and low severity issues

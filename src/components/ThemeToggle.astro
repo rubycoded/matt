@@ -1,0 +1,65 @@
+---
+// ThemeToggle.astro - Interactive theme toggle button
+// Supports session-based theme persistence and cross-tab synchronization
+---
+
+<button
+  type="button"
+  class="inline-flex items-center justify-center w-11 h-11 rounded-lg
+         text-ink dark:text-[oklch(0.95_0.01_85)]
+         hover:bg-[oklch(0.9_0.01_85)] dark:hover:bg-[oklch(0.25_0.02_85)]
+         focus:outline-none focus:ring-2 focus:ring-stone-200 dark:focus:ring-[oklch(0.3_0.02_85)]
+         transition-colors duration-200
+         pointer-events-auto"
+  aria-label="Toggle dark mode"
+  data-testid="theme-toggle"
+>
+  <!-- Sun icon (visible in dark mode, clicks to light) -->
+  <svg
+    class="hidden dark:block w-5 h-5"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+
+  <!-- Moon icon (visible in light mode, clicks to dark) -->
+  <svg
+    class="block dark:hidden w-5 h-5"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<!-- Script moved to Layout.astro for global initialization -->
+
+<style>
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    #theme-toggle {
+      transition: none;
+    }
+  }
+</style>
