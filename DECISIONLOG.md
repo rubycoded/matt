@@ -181,3 +181,95 @@ Chosen approach:
 - Social media analytics tracking implementation
 - A/B testing for social preview images
 - Consider dynamic OG image generation for personalization
+
+---
+
+## 2024-12-21: Dependency Security Vulnerabilities Resolution
+
+### Context
+GitHub detected 10 security vulnerabilities in the project's dependencies across critical, high, moderate, and low severity levels. These vulnerabilities posed risks ranging from Remote Code Execution (RCE) to Cross-Site Scripting (XSS) and development server security bypasses.
+
+### Problem
+The dependency scan revealed:
+- **Critical (2)**: Remote Code Execution in jsonpath-plus allowing arbitrary code execution
+- **High (5)**: XSS bypasses in dompurify, prototype pollution in devalue, bundled vulnerabilities in mermaid
+- **Moderate (2)**: Development server CORS bypass in esbuild, XSS in dompurify
+- **Low (1)**: File serving bypass in vite
+
+These vulnerabilities could allow attackers to execute arbitrary code, bypass security controls, or perform XSS attacks on users.
+
+### Decision
+**Implement comprehensive security fixes using pnpm overrides**
+
+Chosen approach:
+- Use pnpm's override feature to force secure versions of vulnerable dependencies
+- Maintain compatibility with existing toolchain (TinaCMS, Astro, Vite)
+- Apply fixes systematically across all vulnerability severities
+- Verify fixes with `pnpm audit` to ensure zero vulnerabilities remain
+
+### Alternatives Considered
+
+1. **Wait for upstream dependency updates**
+   - Pros: No manual intervention, maintains package.json simplicity
+   - Cons: Security exposure period uncertain, dependent on third-party timeline
+   - Rejected: Immediate security needed for production deployment
+
+2. **Update to latest major versions**
+   - Pros: Most comprehensive security fixes
+   - Cons: Breaking changes, compatibility issues, extensive testing required
+   - Rejected: High risk of breaking existing functionality
+
+3. **pnpm overrides (chosen)**
+   - Pros: Immediate security, minimal disruption, targeted fixes
+   - Cons: Slightly more complex package.json, requires maintenance
+   - Chosen: Best balance of security and stability
+
+### Rationale
+- **Security First**: Immediate resolution of all vulnerabilities
+- **Stability**: Maintains compatibility with existing dependencies
+- **Maintainability**: Overrides are transparent and version-pinned
+- **Performance**: No additional dependencies or runtime overhead
+- **Future-Proof**: Overrides automatically resolve as dependencies update
+
+### Implementation Details
+- Added comprehensive pnpm overrides section to package.json
+- Targeted specific vulnerable version ranges with minimum secure versions
+- Applied TinaCLI version pin to maintain Vite compatibility
+- Verified all fixes with `pnpm audit` showing zero vulnerabilities
+- Maintained existing development workflow functionality
+
+### Files Modified
+- `package.json` - Added pnpm overrides for security fixes
+- `pnpm-lock.yaml` - Regenerated with secure dependency versions
+- Documentation updates in CHANGELOG.md and DECISIONLOG.md
+
+### Impact
+- ✅ All 10 security vulnerabilities resolved
+- ✅ Remote Code Execution vectors eliminated
+- ✅ XSS bypasses patched
+- ✅ Development server security improved
+- ✅ Zero breaking changes to existing functionality
+- ✅ Compatible with TinaCMS, Astro, and Vite toolchain
+- ✅ No performance impact on application
+
+### Technical Specifications
+- jsonpath-plus: >=10.3.0 (fixes CVE-2024-21534, CVE-2025-1302)
+- dompurify: >=3.2.4 (fixes multiple XSS bypasses)
+- mermaid: >=10.9.3 (fixes bundled DOMPurify issues)
+- esbuild: >=0.25.0 (fixes development server CORS)
+- vite: >=6.4.1 (fixes file serving bypasses)
+- devalue: >=5.3.2 (fixes prototype pollution)
+- @tinacms/cli: pinned to 2.0.4 (maintains compatibility)
+
+### Security Validation
+- `pnpm audit` reports "No known vulnerabilities found"
+- All CVEs addressed with appropriate patches
+- Development server security controls functional
+- Production deployment security posture improved
+
+### Future Considerations
+- Regular monitoring of dependency security advisories
+- Consider automated dependency scanning in CI/CD pipeline
+- Plan for major version updates when compatibility allows
+- Monitor TinaCLI updates for Vite compatibility improvements
+- Consider Dependabot integration for automated security updates

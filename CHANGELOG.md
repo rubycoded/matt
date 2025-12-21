@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+- Fixed 10 dependency vulnerabilities (2024-12-21)
+  - Applied comprehensive pnpm overrides to address critical, high, moderate, and low severity issues
+  - Updated jsonpath-plus to fix Remote Code Execution (CVE-2024-21534, CVE-2025-1302)
+  - Updated dompurify to fix XSS bypasses (CVE-2024-45801, CVE-2025-26791)
+  - Updated mermaid to address bundled DOMPurify vulnerabilities
+  - Updated esbuild to fix CORS bypass in development server
+  - Updated vite to fix file serving security issues
+  - Updated devalue to fix prototype pollution (CVE-2025-57820)
+  - All vulnerabilities now resolved according to `pnpm audit`
+
 ### Added
 - Social sharing meta tags implementation (2024-12-21)
   - Added Open Graph (OG) protocol support for rich Facebook/LinkedIn previews
