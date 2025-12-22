@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- XML Sitemap integration (2024-12-22)
+  - Installed and configured @astrojs/sitemap
+  - Auto-generates sitemap-index.xml and sitemap-0.xml on build
+  - Includes all pages and blog posts for better SEO
+  - Site URL configured to https://themattchung.com
 - Dark mode toggle implementation (2024-12-21)
   - User-controlled theme toggle button in header (mobile and desktop)
   - Session-based theme persistence using sessionStorage (GDPR compliant)
