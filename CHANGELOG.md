@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Reading time grammar: now correctly shows "1 minute read" instead of "1 minutes read" (2024-12-22)
 
+### Improved
+- Enhanced 404 page with better UX (2024-12-22)
+  - Large "404" visual indicator
+  - Friendly message explaining the issue
+  - Primary action buttons: Go Home, Read Blog, Digital Garden
+  - Secondary links to Now and People pages
+  - Consistent branding with site design
+  - Full dark mode support
+  - SEO meta tags for the error page
+
 ### Added
 - XML Sitemap integration (2024-12-22)
   - Installed and configured @astrojs/sitemap

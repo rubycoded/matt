@@ -199,6 +199,12 @@ This blog implements comprehensive social sharing meta tags for rich previews on
 - [Twitter Card Validator](https://cards-dev.twitter.com/validator)
 - [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
 
+## SEO Features
+
+- **XML Sitemap** - Auto-generated at `/sitemap-index.xml` for search engine crawling
+- **Reading Time** - Estimated reading time on each blog post
+- **404 Page** - User-friendly error page with navigation links back to content
+
 ## Resources
 
 - [Astro Documentation](https://docs.astro.build)

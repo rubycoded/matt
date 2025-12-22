@@ -803,3 +803,41 @@ To:
 - ✅ Grammatically correct for all reading times
 - ✅ Better attention to detail
 - ✅ Zero performance impact
+
+---
+
+## 2024-12-22: Enhanced 404 Page
+
+### Context
+The existing 404 page was minimal - just a heading and one-line message. Users who landed on broken links had no clear path back to useful content.
+
+### Decision
+**Redesign 404 page with helpful navigation and branded styling**
+
+### Implementation
+- Large "404" visual indicator (8xl/9xl font size, muted color)
+- Friendly heading and descriptive message
+- Three primary CTA buttons with icons:
+  - Go Home (primary/filled style)
+  - Read Blog (secondary/outlined style)
+  - Digital Garden (secondary/outlined style)
+- Secondary section with text links to Now and People pages
+- Full dark mode support using OKLCH color system
+- SEO meta tags for proper indexing
+- Responsive layout (stacked on mobile, row on desktop)
+
+### Rationale
+- **User Recovery**: Help lost users find their way back to content
+- **Reduce Bounce Rate**: Multiple navigation options keep users on site
+- **Brand Consistency**: Matches site design language and color system
+- **Accessibility**: Proper focus states, readable text, sufficient contrast
+
+### Files Modified
+- `src/pages/404.astro` - Complete redesign
+
+### Impact
+- ✅ Better user experience for broken/old links
+- ✅ Multiple clear paths back to content
+- ✅ Consistent with site branding
+- ✅ Full dark mode support
+- ✅ SEO-friendly error page

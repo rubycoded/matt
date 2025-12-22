@@ -2,19 +2,89 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-  <!-- Hero -->
-  <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
-    <div>
-      <h1
-        class="block text-3xl font-bold text-ink dark:text-[oklch(0.95_0.01_85)] sm:text-4xl lg:text-6xl lg:leading-tight"
-      >
-        404 Not Found
-      </h1>
-      <p class="mt-4 text-lg text-ink dark:text-[oklch(0.95_0.01_85)]">
-        Oops! The page you're looking for is missing.
+<Layout
+  title="Page Not Found - Matt Chung"
+  description="The page you're looking for doesn't exist or has been moved."
+>
+  <div class="max-w-[64rem] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+    <div class="text-center">
+      <!-- 404 Number -->
+      <p class="text-8xl md:text-9xl font-bold text-muted/30 dark:text-[oklch(0.4_0.01_85)]">
+        404
       </p>
+
+      <!-- Heading -->
+      <h1
+        class="mt-4 text-3xl font-bold text-ink dark:text-[oklch(0.95_0.01_85)] sm:text-4xl"
+      >
+        Page not found
+      </h1>
+
+      <!-- Friendly Message -->
+      <p class="mt-4 text-lg text-muted dark:text-[oklch(0.7_0.01_85)] max-w-md mx-auto">
+        Sorry, the page you're looking for doesn't exist or has been moved.
+        Let's get you back on track.
+      </p>
+
+      <!-- Navigation Links -->
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-lg
+                 bg-ink text-canvas dark:bg-[oklch(0.95_0.01_85)] dark:text-[oklch(0.15_0.02_85)]
+                 font-medium hover:opacity-90 transition-opacity"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
+          Go Home
+        </a>
+
+        <a
+          href="/blog"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-lg
+                 border border-ink/20 dark:border-[oklch(0.4_0.01_85)]
+                 text-ink dark:text-[oklch(0.95_0.01_85)]
+                 font-medium hover:bg-ink/5 dark:hover:bg-[oklch(0.2_0.01_85)] transition-colors"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+          </svg>
+          Read Blog
+        </a>
+
+        <a
+          href="/garden"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-lg
+                 border border-ink/20 dark:border-[oklch(0.4_0.01_85)]
+                 text-ink dark:text-[oklch(0.95_0.01_85)]
+                 font-medium hover:bg-ink/5 dark:hover:bg-[oklch(0.2_0.01_85)] transition-colors"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+          </svg>
+          Digital Garden
+        </a>
+      </div>
+
+      <!-- Helpful Suggestions -->
+      <div class="mt-12 pt-8 border-t border-ink/10 dark:border-[oklch(0.3_0.01_85)]">
+        <p class="text-sm text-muted dark:text-[oklch(0.6_0.01_85)]">
+          Looking for something specific? Try one of these:
+        </p>
+        <ul class="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+          <li>
+            <a href="/now" class="text-ink dark:text-[oklch(0.85_0.01_85)] underline hover:text-muted dark:hover:text-[oklch(0.95_0.01_85)] transition-colors">
+              What I'm doing now
+            </a>
+          </li>
+          <li>
+            <a href="/people" class="text-ink dark:text-[oklch(0.85_0.01_85)] underline hover:text-muted dark:hover:text-[oklch(0.95_0.01_85)] transition-colors">
+              People I admire
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  <!-- End Hero -->
 </Layout>
