@@ -754,3 +754,52 @@ window.addEventListener('preline-ready', initializeToggleButtons);
 - Evaluate automated dark mode scheduling within session
 - Add visual regression tests with Playwright screenshots
 - Document development environment cache clearing procedures
+
+---
+
+## 2024-12-22: XML Sitemap Integration
+
+### Context
+Site lacked an XML sitemap, making it harder for search engines to discover and index all pages efficiently.
+
+### Decision
+**Integrate @astrojs/sitemap for automatic sitemap generation**
+
+### Implementation
+- Installed `@astrojs/sitemap` package
+- Added integration to `astro.config.mjs`
+- Sitemap automatically generated on build with all 17 pages
+
+### Impact
+- ✅ Improved SEO discoverability
+- ✅ Search engines can efficiently crawl all pages
+- ✅ Zero runtime overhead (static generation)
+- ✅ Automatic updates when new pages are added
+
+---
+
+## 2024-12-22: Reading Time Grammar Fix
+
+### Context
+Reading time display showed "1 minutes read" instead of grammatically correct "1 minute read" for single-minute articles.
+
+### Problem
+The reading time display in `src/layouts/Post.astro` used a static plural form regardless of the actual reading time value.
+
+### Decision
+**Add conditional pluralization for reading time display**
+
+### Implementation
+Changed from:
+```astro
+{readingTime}<span>&nbsp;minutes read</span>
+```
+To:
+```astro
+{readingTime}<span>&nbsp;{readingTime === 1 ? 'minute' : 'minutes'} read</span>
+```
+
+### Impact
+- ✅ Grammatically correct for all reading times
+- ✅ Better attention to detail
+- ✅ Zero performance impact

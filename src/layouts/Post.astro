@@ -83,8 +83,8 @@ const modifiedTime = updatedDate?.toISOString();
           }
           <span class="inline-flex">&middot;</span>
           <span class="inline-flex items-center">
-            {readingTime}<span class="md:hidden">&nbsp;mins read</span
-            ><span class="hidden md:inline">&nbsp;minutes read</span>
+            {readingTime}<span class="md:hidden">&nbsp;{readingTime === 1 ? 'min' : 'mins'} read</span
+            ><span class="hidden md:inline">&nbsp;{readingTime === 1 ? 'minute' : 'minutes'} read</span>
           </span>
         </div>
       </header>

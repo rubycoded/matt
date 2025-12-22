@@ -10,31 +10,12 @@
 
 These are low-effort, high-impact improvements that can be completed quickly.
 
-### 1. Add Reading Time Estimate ⭐ RECOMMENDED
+### 1. ~~Add Reading Time Estimate~~ ✅ ALREADY IMPLEMENTED
 
-**Effort**: Low (1-2 hours)
-**Impact**: Medium - Improves user experience
-**Complexity**: Simple calculation
-
-#### Description
-Display estimated reading time for each blog post (e.g., "5 min read") on both the blog listing page and individual post pages.
-
-#### Benefits
-- Helps readers decide if they have time to read
-- Industry standard practice (Medium, Dev.to, etc.)
-- Improves content discovery
-- No external dependencies needed
-
-#### Implementation
-- Add utility function to calculate reading time (200-250 words/minute)
-- Display in blog listing cards
-- Display at top of blog post pages
-- Example: "📖 5 min read"
-
-#### Files to Modify
-- `src/pages/blog.astro` - Add reading time to listing
-- `src/layouts/Post.astro` - Add reading time to post header
-- `src/utils/readingTime.ts` - New utility function
+**Status**: Complete (was already implemented)
+- Utility function at `src/utils/readingTime.ts` (200 words/min + image/code time)
+- Displayed on individual post pages in `src/layouts/Post.astro`
+- Fixed grammar bug: "1 minute" vs "1 minutes" (2024-12-22)
 
 ---
 
@@ -358,7 +339,7 @@ Based on effort vs. impact, here are the top recommendations for simple improvem
 
 ### Immediate Quick Wins (This Session)
 1. ~~**Add Sitemap**~~ ✅ DONE (2024-12-22)
-2. **Add Reading Time** ⭐⭐ (1-2 hours, nice UX improvement)
+2. ~~**Add Reading Time**~~ ✅ Already implemented, grammar fixed (2024-12-22)
 3. **Improve 404 Page** ⭐ (1 hour, polish)
 
 ### Next Session

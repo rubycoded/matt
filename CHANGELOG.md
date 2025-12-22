@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Reading time grammar: now correctly shows "1 minute read" instead of "1 minutes read" (2024-12-22)
+
 ### Added
 - XML Sitemap integration (2024-12-22)
   - Installed and configured @astrojs/sitemap
